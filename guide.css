@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Courier New', monospace;
+}
+
+a,
+a:active,
+a:focus,
+a:hover,
+a:visited,
+a:link {
+    text-decoration: none;
+    outline: none;
+    color: #ddd;
+}
+
+li {
+    list-style: none;
+}
+
+html {
+    /* 取消滚动条 */
+    overflow: hidden;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    background-color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.loading p {
+    color: #39c5bb;
+    font-size: 72px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.topImg {
+    /* 脱离文档流 */
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background-image: url("./guideImg/guideTop.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    z-index: -1;
+}
+
+.topContent {
+    opacity: 0;
+    position: relative;
+
+    width: 340px;
+    height: 144px;
+    text-align: center;
+    overflow: hidden;
+
+    border-radius: 30px;
+    background-color: #000000bb;
+    padding-top: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.topContent ul {
+    width: 100%;
+    height: 200px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    border-top: #ddd 1px solid;
+    padding-top: 10px;
+}
+
+.topContent li {
+    opacity: 0;
+    position: relative;
+
+    width: 140px;
+    color: #ddd;
+    font-size: 22px;
+    transition: all .2s;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.topContent li:hover {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    color: #39c5bb;
+}
+
+.topContent li:hover::after {
+    transform: scaleX(1);
+    background-color: #39c5bb;
+}
+
+.topContent li::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    transform: scaleX(0);
+    transition: 0.3s;
+    background-color: #ddd;
+}
+
+.topContent p {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #ddd;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.topContent h1 {
+    color: #ddd;
+    font-size: 54px;
+}
+
+.topContent li span{
+    pointer-events: none;
+}
+
+.body {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+}
+
+.contentP {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.P1 {
+    background-color: #39c5bb;
+}
+
+.P2 {
+    background-color: #ff68f2;
+}
+
+.P3 {
+    background-color: #d41111;
+}

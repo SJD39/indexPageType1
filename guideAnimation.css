@@ -1,0 +1,60 @@
+/* 背景出现动画 */
+@keyframes appear {
+    from {
+        filter: brightness(300%);
+        opacity: 0;
+    }
+
+    to {
+        filter: brightness(100%);
+        opacity: 1;
+    }
+}
+
+/* 标题出现动画 */
+@keyframes appearTitle {
+    from {
+        opacity: 0;
+        top: 70px;
+    }
+
+    to {
+        opacity: 1;
+        top: 0px;
+    }
+}
+
+/* 背景亮度变暗动画 */
+@keyframes darken {
+    from {
+        filter: brightness(100%);
+    }
+
+    to {
+        filter: brightness(70%);
+    }
+}
+
+/* 首页内容展开动画 */
+@keyframes topContentOpen {
+    from {
+        height: 144px;
+    }
+
+    to {
+        height: 400px;
+    }
+}
+
+/* 首页内容li滑入动画 */
+@keyframes topContentLi {
+    from {
+        opacity: 0;
+        top: 40px;
+    }
+
+    to {
+        opacity: 1;
+        top: 0px;
+    }
+}
