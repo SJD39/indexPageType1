@@ -5,10 +5,6 @@ var topImg = document.getElementsByClassName('topImg')[0];
 var topContent = document.getElementsByClassName('topContent')[0];
 var topContentLis = topContent.getElementsByTagName('li');
 
-var page = 1;
-var pageMax = 4;
-var wheelLock = false;
-
 window.onload = function () {
     // 加载页面消失
     loading.style.display = 'none';
@@ -57,45 +53,10 @@ addEventListener('wheel', (event) => {
         return;
     }
     if (event.deltaY > 0) {
-        if (page == pageMax) {
-            return;
-        }
-        // 向下翻页
-        wheelLock = true;
-        var pageDownKeyframes = new KeyframeEffect(
-            body,
-            [
-                { top: - (page - 2) * 100 + '%' },
-                { top: - (page - 1) * 100 + '%' }
-            ],
-            { duration: speed, fill: 'forwards', easing: 'ease' }
-        );
-
-        var pageDownAnimation = new Animation(pageDownKeyframes, document.timeline);
-        pageDownAnimation.play();
-        page++;
+        pageDown(speed);
     } else if (event.deltaY < 0) {
-        if (page == 1) {
-            return;
-        }
-        // 向上翻页
-        wheelLock = true;
-        var pageUpKeyframes = new KeyframeEffect(
-            body,
-            [
-                { top: - (page - 2) * 100 + '%' },
-                { top: - (page - 3) * 100 + '%' }
-            ],
-            { duration: speed, fill: 'forwards', easing: 'ease' }
-        );
-
-        var pageUpAnimation = new Animation(pageUpKeyframes, document.timeline);
-        pageUpAnimation.play();
-        page--;
+        pageUp(speed)
     }
-    setTimeout(() => {
-        wheelLock = false;
-    }, speed);
 });
 
 window.onclick = function(e){

@@ -1,0 +1,45 @@
+@media screen and (max-width: 480px) {
+    @keyframes topContentOpen {
+        from {
+            height: 144px;
+        }
+    
+        to {
+            height: 350px;
+        }
+    }
+    .topContent{
+        width: 240px;
+        padding-top: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 20px;
+    }
+
+    .topContent li{
+        width: 120px;
+        padding: 0px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 15px;
+    }
+    
+    .topContent li:hover{
+        font-size: 15px;
+        color: #39c5bb;
+    }
+    
+    .topContent p{
+        font-size: 22px;
+        margin: 5px;
+        padding-bottom: 30px;
+    }
+    
+    .topContent h1{
+        color: #ddd;
+        font-size: 46px;
+    }
+    .topContent span{
+        font-size: 18px;
+    }
+}
