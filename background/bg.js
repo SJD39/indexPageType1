@@ -4,6 +4,7 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
 function createBgSquare(x, y, angle) {
     let ctx = bgCanvas.getContext("2d");
 
@@ -112,11 +113,11 @@ bgCanvas.height = window.innerHeight;
 
 // 数量
 var screenArea = window.innerWidth * window.innerHeight;
-var num = screenArea / 60000;
-var squareNum = num / 4;
-var triangleNum = num / 4;
-var xNum = num / 4;
-var roundNum = num / 4;
+var averageNum = screenArea / 56000;
+var squareNum = Math.floor(averageNum / 4);
+var triangleNum = Math.floor(averageNum / 4);
+var xNum = Math.floor(averageNum / 4);
+var roundNum = Math.floor(averageNum / 4);
 var num = squareNum + triangleNum + xNum + roundNum;
 
 // 随机位置、角度
