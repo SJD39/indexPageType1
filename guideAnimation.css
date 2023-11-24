@@ -1,15 +1,3 @@
-/* 背景出现动画 */
-@keyframes appear {
-    from {
-        filter: brightness(300%);
-        opacity: 0;
-    }
-
-    to {
-        filter: brightness(100%);
-        opacity: 1;
-    }
-}
 
 /* 标题出现动画 */
 @keyframes appearTitle {
@@ -21,17 +9,6 @@
     to {
         opacity: 1;
         top: 0px;
-    }
-}
-
-/* 背景亮度变暗动画 */
-@keyframes darken {
-    from {
-        filter: brightness(100%);
-    }
-
-    to {
-        filter: brightness(70%);
     }
 }
 
