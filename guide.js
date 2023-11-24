@@ -1,7 +1,6 @@
 var loading = document.getElementsByClassName('loading')[0];
 var html = document.getElementsByTagName('html')[0];
 var body = document.getElementsByClassName('body')[0];
-var topImg = document.getElementsByClassName('topImg')[0];
 var topContent = document.getElementsByClassName('topContent')[0];
 var topContentLis = topContent.getElementsByTagName('li');
 
@@ -14,10 +13,6 @@ window.onload = function () {
     html.style.animationFillMode = 'forwards';
 
     setTimeout(function () {
-        // 背景亮度变暗动画
-        topImg.style.animation = 'darken .8s';
-        topImg.style.animationFillMode = 'forwards';
-
         // 标题出现动画
         topContent.style.animation = 'appearTitle .8s';
         topContent.style.animationFillMode = 'forwards';

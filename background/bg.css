@@ -1,3 +1,9 @@
 html{
     background-color: #39c5bb;
 }
+
+#bgCanvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
