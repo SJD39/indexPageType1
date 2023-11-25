@@ -9,19 +9,23 @@
 
 @keyframes CursorEnlarge {
     0%{
-        transform: scale(1);
+        width: 90px;
+        height: 90px;
     }
     100%{
-        transform: scale(1.2);
+        width: 110px;
+        height: 110px;
     }
 }
 
 @keyframes CursorNarrow {
     0%{
-        transform: scale(1.2);
+        width: 110px;
+        height: 110px;
     }
     100%{
-        transform: scale(1);
+        width: 90px;
+        height: 90px;
     }
 }
 

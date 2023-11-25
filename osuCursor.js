@@ -57,10 +57,10 @@ function drawTrace() {
 window.requestAnimationFrame(drawTrace);
 
 // 光标动画
-window.onmousedown = function(){
-    CursorRound.style.animation = 'CursorEnlarge .2s forwards';
+window.onmousedown = function () {
+    CursorRound.style.animation = 'CursorEnlarge .2s forwards, CursorRotate 3s linear infinite';
 }
 
-window.onmouseup = function(){
-    CursorRound.style.animation = 'CursorNarrow .2s forwards';
+window.onmouseup = function () {
+    CursorRound.style.animation = 'CursorNarrow .2s forwards, CursorRotate 3s linear infinite';
 }
