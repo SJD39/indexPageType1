@@ -1,0 +1,69 @@
+@keyframes CursorRotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes CursorEnlarge {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.2);
+    }
+}
+
+@keyframes CursorNarrow {
+    0%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    cursor: none;
+}
+
+body{
+    background-color: aquamarine;
+}
+
+#CursorCanvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+#CursorBox{
+    width: 90px;
+    height: 90px;
+    position: fixed;
+    top: -90px;
+    left: -90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    user-select: none;
+}
+
+#CursorRound{
+    width: 90px;
+    animation: CursorRotate 3s linear infinite;
+    position: absolute;
+    pointer-events: none;
+}
+
+#CursorCenter{
+    width: 30px;
+    position: absolute;
+    pointer-events: none;
+}

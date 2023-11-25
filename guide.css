@@ -33,27 +33,6 @@ body {
     position: relative;
 }
 
-.loading {
-    width: 100%;
-    height: 100%;
-
-    position: fixed;
-    background-color: #fff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 1000;
-}
-
-.loading p {
-    color: #39c5bb;
-    font-size: 72px;
-    font-weight: bold;
-    display: inline-block;
-}
-
 .topContent {
     opacity: 0;
     position: relative;
