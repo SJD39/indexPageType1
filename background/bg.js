@@ -4,7 +4,6 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 function createBgSquare(x, y, angle) {
     let ctx = bgCanvas.getContext("2d");
 
