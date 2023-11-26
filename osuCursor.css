@@ -35,10 +35,6 @@
     cursor: none;
 }
 
-body{
-    background-color: aquamarine;
-}
-
 #CursorCanvas{
     position: fixed;
     top: 0;

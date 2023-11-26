@@ -9,27 +9,32 @@ window.onresize = function () {
 
 
 // 鼠标移出浏览器隐藏
-window.onmouseout = function(){
+window.onmouseout = function () {
     CursorBox.style.display = 'none';
 }
 
 // 记录鼠标位置
 var trace = [];
+var traceNum = 20;
 
 window.onmousemove = function (event) {
     CursorBox.style.display = 'flex';
 
     trace.unshift([event.clientX, event.clientY, new Date().getTime()]);
-    if (trace.length > 20) {
-        trace.length = 20;
+    if (trace.length > traceNum) {
+        trace.length = traceNum;
     }
-
-    CursorBox.style.top = (event.clientY - 45) + 'px';
-    CursorBox.style.left = (event.clientX -45) + 'px';
 }
 
 // 绘制线段
 function drawTrace() {
+    // 刷新光标位置
+    if (trace[0] != undefined) {
+        CursorBox.style.top = (trace[0][1] - 45) + 'px';
+        CursorBox.style.left = (trace[0][0] - 45) + 'px';
+    }
+
+
     let time = new Date().getTime();
     let ctx = CursorCanvas.getContext("2d");
 
