@@ -7,7 +7,7 @@
     }
 }
 
-@keyframes CursorEnlarge {
+@keyframes cursorToBig {
     0%{
         width: 90px;
         height: 90px;
@@ -18,7 +18,7 @@
     }
 }
 
-@keyframes CursorNarrow {
+@keyframes cursorToSmall {
     0%{
         width: 110px;
         height: 110px;
@@ -33,14 +33,14 @@
     cursor: none;
 }
 
-#CursorCanvas{
+#osuCursorCanvas{
     position: fixed;
     top: 0;
     left: 0;
     pointer-events: none;
 }
 
-#CursorBox{
+#osuCursorBox{
     width: 90px;
     height: 90px;
     position: fixed;
@@ -53,14 +53,14 @@
     user-select: none;
 }
 
-#CursorRound{
+#osuCursorRound{
     width: 90px;
     animation: CursorRotate 3s linear infinite;
     position: absolute;
     pointer-events: none;
 }
 
-#CursorCenter{
+#osuCursorCenter{
     width: 30px;
     position: absolute;
     pointer-events: none;
