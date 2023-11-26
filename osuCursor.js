@@ -34,7 +34,6 @@ function drawTrace() {
         CursorBox.style.left = (trace[0][0] - 45) + 'px';
     }
 
-
     let time = new Date().getTime();
     let ctx = CursorCanvas.getContext("2d");
 
