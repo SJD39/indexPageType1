@@ -10,7 +10,7 @@ function createBgSquare(x, y, angle) {
 
     // 定义线段样式
     ctx.strokeStyle = "#faafbe";
-    ctx.lineWidth = 8;
+    ctx.lineWidth = 8 * size;
     ctx.lineCap = 'round';
 
     // 绘制线段
@@ -18,17 +18,17 @@ function createBgSquare(x, y, angle) {
     ctx.translate(x, y);
     ctx.rotate(angle * (Math.PI / 180));
 
-    ctx.moveTo(-62, -62);
-    ctx.lineTo(62, -62);
+    ctx.moveTo(-62 * size, -62 * size);
+    ctx.lineTo(62 * size, -62 * size);
     ctx.stroke();
-    ctx.moveTo(62, -62);
-    ctx.lineTo(62, 62);
+    ctx.moveTo(62 * size, -62 * size);
+    ctx.lineTo(62 * size, 62 * size);
     ctx.stroke();
-    ctx.moveTo(62, 62);
-    ctx.lineTo(-62, 62);
+    ctx.moveTo(62 * size, 62 * size);
+    ctx.lineTo(-62 * size, 62 * size);
     ctx.stroke();
-    ctx.moveTo(-62, 62);
-    ctx.lineTo(-62, -62);
+    ctx.moveTo(-62 * size, 62 * size);
+    ctx.lineTo(-62 * size, -62 * size);
     ctx.stroke();
 
     ctx.rotate(-(angle * (Math.PI / 180)));
@@ -41,7 +41,7 @@ function createBgTriangle(x, y, angle) {
 
     // 定义线段样式
     ctx.strokeStyle = "#66ccff";
-    ctx.lineWidth = 8;
+    ctx.lineWidth = 8 * size;
     ctx.lineCap = 'round';
 
     // 绘制线段
@@ -49,14 +49,14 @@ function createBgTriangle(x, y, angle) {
     ctx.translate(x, y);
     ctx.rotate(angle * (Math.PI / 180));
 
-    ctx.moveTo(-63, -63);
-    ctx.lineTo(63, -63);
+    ctx.moveTo(-63 * size, -63 * size);
+    ctx.lineTo(63 * size, -63 * size);
     ctx.stroke();
-    ctx.moveTo(63, -63);
-    ctx.lineTo(0, 47);
+    ctx.moveTo(63 * size, -63 * size);
+    ctx.lineTo(0, 47 * size);
     ctx.stroke();
-    ctx.moveTo(0, 47);
-    ctx.lineTo(-63, -63);
+    ctx.moveTo(0, 47 * size);
+    ctx.lineTo(-63 * size, -63 * size);
     ctx.stroke();
 
     ctx.rotate(-(angle * (Math.PI / 180)));
@@ -69,7 +69,7 @@ function createBgX(x, y, angle) {
 
     // 定义线段样式
     ctx.strokeStyle = "#5C88DA";
-    ctx.lineWidth = 8;
+    ctx.lineWidth = 8 * size;
     ctx.lineCap = 'round';
 
     // 绘制线段
@@ -77,12 +77,12 @@ function createBgX(x, y, angle) {
     ctx.translate(x, y);
     ctx.rotate(angle * (Math.PI / 180));
 
-    ctx.moveTo(-55, -55);
-    ctx.lineTo(55, 55);
+    ctx.moveTo(-55 * size, -55 * size);
+    ctx.lineTo(55 * size, 55 * size);
     ctx.stroke();
 
-    ctx.moveTo(55, -55);
-    ctx.lineTo(-55, 55);
+    ctx.moveTo(55 * size, -55 * size);
+    ctx.lineTo(-55 * size, 55 * size);
     ctx.stroke();
 
     ctx.rotate(-(angle * (Math.PI / 180)));
@@ -95,13 +95,13 @@ function createBgRound(x, y) {
 
     // 定义线段样式
     ctx.strokeStyle = "#00ffcc";
-    ctx.lineWidth = 8;
+    ctx.lineWidth = 8 * size;
     ctx.lineCap = 'round';
 
     // 绘制线段
     ctx.beginPath();
 
-    ctx.arc(x, y, 65, 0, 360, false);
+    ctx.arc(x, y, 65 * size, 0, 360, false);
 
     ctx.stroke();
     ctx.closePath();
@@ -111,9 +111,14 @@ function createBgRound(x, y) {
 bgCanvas.width = window.innerWidth;
 bgCanvas.height = window.innerHeight;
 
+// 缩放系数
+var size = window.innerWidth / 1501;
+
+// 最小间距
+var spacing = 180 * size;
+
 // 数量
-var screenArea = window.innerWidth * window.innerHeight;
-var averageNum = screenArea / 56000;
+var averageNum = 20;
 var squareNum = Math.floor(averageNum / 4);
 var triangleNum = Math.floor(averageNum / 4);
 var xNum = Math.floor(averageNum / 4);
@@ -138,8 +143,8 @@ while (true) {
             if (i == ii) {
                 continue;
             }
-            if (Math.abs(positionX[i] - positionX[ii]) < 180 &&
-                Math.abs(positionY[i] - positionY[ii]) < 180) {
+            if (Math.abs(positionX[i] - positionX[ii]) < 180 * size &&
+                Math.abs(positionY[i] - positionY[ii]) < 180 * size) {
                 positionX[ii] = getRandomIntInclusive(0, bgCanvas.width);
                 positionY[ii] = getRandomIntInclusive(0, bgCanvas.height);
                 error = true;
