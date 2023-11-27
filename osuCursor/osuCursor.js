@@ -45,7 +45,6 @@ class osuCursor {
 
     // 指针变大
     cursorToBig() {
-        console.log(this.trace);
         this.osuCursorRound.style.animation = 'cursorToBig .2s forwards, CursorRotate 3s linear infinite';
     }
 
@@ -100,30 +99,3 @@ class osuCursor {
         window.requestAnimationFrame(this.drawTrace.bind(this));
     }
 }
-
-var cursor = new osuCursor();
-
-window.onresize = function () {
-    cursor.resetCanvasSize();
-}
-
-window.onmouseout = function () {
-    cursor.invisibleCursor();
-}
-
-window.onmousedown = function () {
-    cursor.cursorToBig();
-}
-
-window.onmouseup = function () {
-    cursor.cursorToSmall();
-}
-
-// 记录鼠标位置
-window.onmousemove = function (event) {
-    cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
-    cursor.visibleCursor();
-}
-
-// 绘制线段
-window.requestAnimationFrame(cursor.drawTrace.bind(cursor));

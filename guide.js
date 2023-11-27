@@ -51,3 +51,31 @@ window.onclick = function(e){
     }
     window.open(e.target.dataset.href)
 }
+
+// osu光标
+var cursor = new osuCursor();
+
+window.onresize = function () {
+    cursor.resetCanvasSize();
+}
+
+window.onmouseout = function () {
+    cursor.invisibleCursor();
+}
+
+window.onmousedown = function () {
+    cursor.cursorToBig();
+}
+
+window.onmouseup = function () {
+    cursor.cursorToSmall();
+}
+
+// 记录鼠标位置
+window.onmousemove = function (event) {
+    cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
+    cursor.visibleCursor();
+}
+
+// 绘制线段
+cursor.drawTrace();
