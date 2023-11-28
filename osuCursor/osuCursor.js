@@ -2,7 +2,7 @@ class osuCursor {
     constructor() {
         // 初始化变量
         this.tracePoint = [];
-        this.traceNum = 20;
+        this.traceNum = 200;
 
         // 生成HTML元素
         this.osuCursorRound = document.createElement('img');
@@ -72,30 +72,30 @@ class osuCursor {
         // 刷新光标位置
         if (this.tracePoint.length != 0) {
             this.setCursorPoint(this.tracePoint[0][0], this.tracePoint[0][1]);
+
+            let time = new Date().getTime();
+            let ctx = this.osuCursorCanvas.getContext("2d");
+
+            ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
+
+            // 定义线段样式
+            ctx.strokeStyle = "#0000FF";
+            ctx.lineWidth = 6;
+            ctx.lineCap = 'round';
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = "#0000FF";
+
+            ctx.beginPath();
+            ctx.moveTo(this.tracePoint[0][0], this.tracePoint[0][1]);
+            for (let i = 0; i < this.tracePoint.length - 1; i++) {
+                ctx.lineTo(this.tracePoint[i + 1][0], this.tracePoint[i + 1][1]);
+                ctx.globalAlpha = (2.6 / (time - this.tracePoint[i][2])) * 0.8;
+                ctx.stroke();
+            }
+            ctx.closePath();
         }
-
-        let time = new Date().getTime();
-        let ctx = this.osuCursorCanvas.getContext("2d");
-
-        ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
-
-        // 定义线段样式
-        ctx.strokeStyle = "#0000FF";
-        ctx.lineWidth = 6;
-        ctx.lineCap = 'round';
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = "#0000FF";
-
-        ctx.beginPath();
-        for (let i = 0; i < this.tracePoint.length - 1; i++) {
-            ctx.moveTo(this.tracePoint[i][0], this.tracePoint[i][1]);
-            ctx.lineTo(this.tracePoint[i + 1][0], this.tracePoint[i + 1][1]);
-            ctx.globalAlpha = (2.6 / (time - this.tracePoint[i][2])) * 0.8;
-            ctx.stroke();
-        }
-        ctx.closePath();
         window.requestAnimationFrame(this.drawTrace.bind(this));
     }
 }
