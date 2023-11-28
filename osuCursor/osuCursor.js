@@ -2,7 +2,7 @@ class osuCursor {
     constructor() {
         // 初始化变量
         this.tracePoint = [];
-        this.traceNum = 200;
+        this.traceNum = 20;
 
         // 生成HTML元素
         this.osuCursorRound = document.createElement('img');
