@@ -4,12 +4,6 @@ class sonyBtnBg {
     }
 }
 
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function createBgSquare(x, y, angle) {
     let ctx = bgCanvas.getContext("2d");
 
@@ -17,6 +11,7 @@ function createBgSquare(x, y, angle) {
     ctx.strokeStyle = "#faafbe";
     ctx.lineWidth = 8 * size;
     ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
 
     // 绘制线段
     ctx.beginPath();
@@ -25,14 +20,8 @@ function createBgSquare(x, y, angle) {
 
     ctx.moveTo(-62 * size, -62 * size);
     ctx.lineTo(62 * size, -62 * size);
-    ctx.stroke();
-    ctx.moveTo(62 * size, -62 * size);
     ctx.lineTo(62 * size, 62 * size);
-    ctx.stroke();
-    ctx.moveTo(62 * size, 62 * size);
     ctx.lineTo(-62 * size, 62 * size);
-    ctx.stroke();
-    ctx.moveTo(-62 * size, 62 * size);
     ctx.lineTo(-62 * size, -62 * size);
     ctx.stroke();
 
@@ -48,6 +37,7 @@ function createBgTriangle(x, y, angle) {
     ctx.strokeStyle = "#66ccff";
     ctx.lineWidth = 8 * size;
     ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
 
     // 绘制线段
     ctx.beginPath();
@@ -56,11 +46,7 @@ function createBgTriangle(x, y, angle) {
 
     ctx.moveTo(-63 * size, -63 * size);
     ctx.lineTo(63 * size, -63 * size);
-    ctx.stroke();
-    ctx.moveTo(63 * size, -63 * size);
     ctx.lineTo(0, 47 * size);
-    ctx.stroke();
-    ctx.moveTo(0, 47 * size);
     ctx.lineTo(-63 * size, -63 * size);
     ctx.stroke();
 
@@ -76,6 +62,7 @@ function createBgX(x, y, angle) {
     ctx.strokeStyle = "#5C88DA";
     ctx.lineWidth = 8 * size;
     ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
 
     // 绘制线段
     ctx.beginPath();
@@ -84,8 +71,6 @@ function createBgX(x, y, angle) {
 
     ctx.moveTo(-55 * size, -55 * size);
     ctx.lineTo(55 * size, 55 * size);
-    ctx.stroke();
-
     ctx.moveTo(55 * size, -55 * size);
     ctx.lineTo(-55 * size, 55 * size);
     ctx.stroke();
