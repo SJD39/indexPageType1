@@ -99,3 +99,17 @@ class osuCursor {
         window.requestAnimationFrame(this.drawTrace.bind(this));
     }
 }
+
+// osu光标
+var cursor = new osuCursor();
+
+window.addEventListener("resize", cursor.resetCanvasSize);
+window.addEventListener("mouseout", cursor.invisibleCursor);
+window.addEventListener("mousedown", cursor.cursorToBig);
+window.addEventListener("mouseup", cursor.cursorToSmall);
+window.addEventListener("mousemove", function(event){
+    cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
+    cursor.visibleCursor();
+});
+
+cursor.drawTrace();
