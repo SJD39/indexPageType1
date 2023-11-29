@@ -1,155 +1,171 @@
 class sonyBtnBg {
     constructor() {
+        // 缩放系数
+        this.size = window.innerWidth / 1501;
 
+        // 最小间距
+        this.spacing = 180 * this.size;
+
+        // 随机位置、角度
+        this.position = [];
+        this.angle = [];
+
+        // 数量
+        this.squareNum = 5;
+        this.triangleNum = 5;
+        this.xNum = 5;
+        this.roundNum = 5;
+        this.num = this.squareNum + this.triangleNum + this.xNum + this.roundNum;
+
+        // 生成html元素
+        this.sonyBtnBg = document.createElement('canvas');
+        this.sonyBtnBg.id = 'bgCanvas';
+
+        this.body = document.getElementsByTagName('body')[0];
+        this.body.append(this.sonyBtnBg);
+
+        // 初始屏幕大小
+        bgCanvas.width = window.innerWidth;
+        bgCanvas.height = window.innerHeight;
     }
-}
 
-function createBgSquare(x, y, angle) {
-    let ctx = bgCanvas.getContext("2d");
+    createBgSquare(x, y, angle) {
+        let ctx = bgCanvas.getContext("2d");
+    
+        // 定义线段样式
+        ctx.strokeStyle = "#faafbe";
+        ctx.lineWidth = 8 * this.size;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+    
+        // 绘制线段
+        ctx.beginPath();
+        ctx.translate(x, y);
+        ctx.rotate(angle * (Math.PI / 180));
+    
+        ctx.moveTo(-62 * this.size, -62 * this.size);
+        ctx.lineTo(62 * this.size, -62 * this.size);
+        ctx.lineTo(62 * this.size, 62 * this.size);
+        ctx.lineTo(-62 * this.size, 62 * this.size);
+        ctx.lineTo(-62 * this.size, -62 * this.size);
+        ctx.stroke();
+    
+        ctx.rotate(-(angle * (Math.PI / 180)));
+        ctx.translate(-x, -y);
+        ctx.closePath();
+    }
 
-    // 定义线段样式
-    ctx.strokeStyle = "#faafbe";
-    ctx.lineWidth = 8 * size;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
+    createBgTriangle(x, y, angle) {
+        let ctx = bgCanvas.getContext("2d");
+    
+        // 定义线段样式
+        ctx.strokeStyle = "#66ccff";
+        ctx.lineWidth = 8 * this.size;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+    
+        // 绘制线段
+        ctx.beginPath();
+        ctx.translate(x, y);
+        ctx.rotate(angle * (Math.PI / 180));
+    
+        ctx.moveTo(-63 * this.size, -63 * this.size);
+        ctx.lineTo(63 * this.size, -63 * this.size);
+        ctx.lineTo(0, 47 * this.size);
+        ctx.lineTo(-63 * this.size, -63 * this.size);
+        ctx.stroke();
+    
+        ctx.rotate(-(angle * (Math.PI / 180)));
+        ctx.translate(-x, -y);
+        ctx.closePath();
+    }
 
-    // 绘制线段
-    ctx.beginPath();
-    ctx.translate(x, y);
-    ctx.rotate(angle * (Math.PI / 180));
+    createBgX(x, y, angle) {
+        let ctx = bgCanvas.getContext("2d");
+    
+        // 定义线段样式
+        ctx.strokeStyle = "#5C88DA";
+        ctx.lineWidth = 8 * this.size;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+    
+        // 绘制线段
+        ctx.beginPath();
+        ctx.translate(x, y);
+        ctx.rotate(angle * (Math.PI / 180));
+    
+        ctx.moveTo(-55 * this.size, -55 * this.size);
+        ctx.lineTo(55 * this.size, 55 * this.size);
+        ctx.moveTo(55 * this.size, -55 * this.size);
+        ctx.lineTo(-55 * this.size, 55 * this.size);
+        ctx.stroke();
+    
+        ctx.rotate(-(angle * (Math.PI / 180)));
+        ctx.translate(-x, -y);
+        ctx.closePath();
+    }
 
-    ctx.moveTo(-62 * size, -62 * size);
-    ctx.lineTo(62 * size, -62 * size);
-    ctx.lineTo(62 * size, 62 * size);
-    ctx.lineTo(-62 * size, 62 * size);
-    ctx.lineTo(-62 * size, -62 * size);
-    ctx.stroke();
+    createBgRound(x, y) {
+        let ctx = bgCanvas.getContext("2d");
+    
+        // 定义线段样式
+        ctx.strokeStyle = "#00ffcc";
+        ctx.lineWidth = 8 * this.size;
+        ctx.lineCap = 'round';
+    
+        // 绘制线段
+        ctx.beginPath();
+    
+        ctx.arc(x, y, 65 * this.size, 0, 360, false);
+    
+        ctx.stroke();
+        ctx.closePath();
+    }
 
-    ctx.rotate(-(angle * (Math.PI / 180)));
-    ctx.translate(-x, -y);
-    ctx.closePath();
-}
+    setRandomPA(){
+        // 随机位置、角度
+        for (let i = 0; i < this.num; i++) {
+            this.position[i] = [getRandomIntInclusive(0, bgCanvas.width),
+            getRandomIntInclusive(0, bgCanvas.height)];
+            this.angle[i] = getRandomIntInclusive(0, 359);
+        }
+    }
 
-function createBgTriangle(x, y, angle) {
-    let ctx = bgCanvas.getContext("2d");
-
-    // 定义线段样式
-    ctx.strokeStyle = "#66ccff";
-    ctx.lineWidth = 8 * size;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    // 绘制线段
-    ctx.beginPath();
-    ctx.translate(x, y);
-    ctx.rotate(angle * (Math.PI / 180));
-
-    ctx.moveTo(-63 * size, -63 * size);
-    ctx.lineTo(63 * size, -63 * size);
-    ctx.lineTo(0, 47 * size);
-    ctx.lineTo(-63 * size, -63 * size);
-    ctx.stroke();
-
-    ctx.rotate(-(angle * (Math.PI / 180)));
-    ctx.translate(-x, -y);
-    ctx.closePath();
-}
-
-function createBgX(x, y, angle) {
-    let ctx = bgCanvas.getContext("2d");
-
-    // 定义线段样式
-    ctx.strokeStyle = "#5C88DA";
-    ctx.lineWidth = 8 * size;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    // 绘制线段
-    ctx.beginPath();
-    ctx.translate(x, y);
-    ctx.rotate(angle * (Math.PI / 180));
-
-    ctx.moveTo(-55 * size, -55 * size);
-    ctx.lineTo(55 * size, 55 * size);
-    ctx.moveTo(55 * size, -55 * size);
-    ctx.lineTo(-55 * size, 55 * size);
-    ctx.stroke();
-
-    ctx.rotate(-(angle * (Math.PI / 180)));
-    ctx.translate(-x, -y);
-    ctx.closePath();
-}
-
-function createBgRound(x, y) {
-    let ctx = bgCanvas.getContext("2d");
-
-    // 定义线段样式
-    ctx.strokeStyle = "#00ffcc";
-    ctx.lineWidth = 8 * size;
-    ctx.lineCap = 'round';
-
-    // 绘制线段
-    ctx.beginPath();
-
-    ctx.arc(x, y, 65 * size, 0, 360, false);
-
-    ctx.stroke();
-    ctx.closePath();
-}
-
-// 初始屏幕大小
-bgCanvas.width = window.innerWidth;
-bgCanvas.height = window.innerHeight;
-
-// 缩放系数
-var size = window.innerWidth / 1501;
-
-// 最小间距
-var spacing = 180 * size;
-
-// 数量
-var averageNum = 20;
-var squareNum = Math.floor(averageNum / 4);
-var triangleNum = Math.floor(averageNum / 4);
-var xNum = Math.floor(averageNum / 4);
-var roundNum = Math.floor(averageNum / 4);
-var num = squareNum + triangleNum + xNum + roundNum;
-
-// 随机位置、角度
-var positionX = [];
-var positionY = [];
-var angle = [];
-
-for (let i = 0; i < num; i++) {
-    positionX[i] = getRandomIntInclusive(0, bgCanvas.width);
-    positionY[i] = getRandomIntInclusive(0, bgCanvas.height);
-    angle[i] = getRandomIntInclusive(0, 360);
-}
-
-while (true) {
-    let error = false;
-    for (let i = 0; i < num; i++) {
-        for (let ii = 0; ii < num; ii++) {
-            if (i == ii) {
-                continue;
+    resetRandomPA(){
+        while (true) {
+            let error = false;
+            for (let i = 0; i < this.num; i++) {
+                for (let ii = 0; ii < this.num; ii++) {
+                    if (i == ii) {
+                        continue;
+                    }
+                    if (Math.abs(this.position[i][0] - this.position[ii][0]) < this.spacing &&
+                        Math.abs(this.position[i][1] - this.position[ii][1]) < this.spacing) {
+                        this.position[ii][0] = getRandomIntInclusive(0, bgCanvas.width);
+                        this.position[ii][1] = getRandomIntInclusive(0, bgCanvas.height);
+                        error = true;
+                    }
+                }
             }
-            if (Math.abs(positionX[i] - positionX[ii]) < 180 * size &&
-                Math.abs(positionY[i] - positionY[ii]) < 180 * size) {
-                positionX[ii] = getRandomIntInclusive(0, bgCanvas.width);
-                positionY[ii] = getRandomIntInclusive(0, bgCanvas.height);
-                error = true;
+            if (error == false) {
+                break;
             }
         }
     }
-    if (error == false) {
-        break;
+
+    drawGraphics(){
+        // 绘制图形
+        for (let i = 0; i < this.num; i = i + 4) {
+            this.createBgSquare(this.position[i][0], this.position[i][1], this.angle[i]);
+            this.createBgRound(this.position[i + 1][0], this.position[i + 1][1]);
+            this.createBgTriangle(this.position[i + 2][0], this.position[i + 2][1], this.angle[i + 2]);
+            this.createBgX(this.position[i + 3][0], this.position[i + 3][1], this.angle[i + 3]);
+        }
     }
 }
 
-// 绘制图形
-for (let i = 0; i < num; i = i + 4) {
-    createBgSquare(positionX[i], positionY[i], angle[i]);
-    createBgRound(positionX[i + 1], positionY[i + 1]);
-    createBgTriangle(positionX[i + 2], positionY[i + 2], angle[i + 2]);
-    createBgX(positionX[i + 3], positionY[i + 3], angle[i + 3]);
-}
+var bg = new sonyBtnBg();
+
+bg.setRandomPA();
+bg.resetRandomPA();
+bg.drawGraphics();
