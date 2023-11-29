@@ -29,6 +29,20 @@ class osuCursor {
 
         this.body = document.getElementsByTagName('body')[0];
         this.body.append(this.osuCursorBox, this.osuCursorCanvas);
+
+        // 获取Canvas上下文
+        this.ctx = this.osuCursorCanvas.getContext("2d");
+    }
+
+    setLineStyle() {
+        this.ctx.strokeStyle = this.lineColor;
+        this.ctx.lineWidth = this.lineWidth;
+        this.ctx.lineCap = 'round';
+        this.ctx.lineJoin = 'round';
+        this.ctx.shadowOffsetX = 0;
+        this.ctx.shadowOffsetY = 0;
+        this.ctx.shadowBlur = this.shadowBlur;
+        this.ctx.shadowColor = this.shadowColor;
     }
 
     // 重设Canvas大小
@@ -78,28 +92,17 @@ class osuCursor {
             this.setCursorPoint(this.tracePoint[0][0], this.tracePoint[0][1]);
 
             let time = new Date().getTime();
-            let ctx = this.osuCursorCanvas.getContext("2d");
 
-            ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
+            this.ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
 
-            // 定义线段样式
-            ctx.strokeStyle = this.lineColor;
-            ctx.lineWidth = this.lineWidth;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 0;
-            ctx.shadowBlur = this.shadowBlur;
-            ctx.shadowColor = this.shadowColor;
-
-            ctx.beginPath();
-            ctx.moveTo(this.tracePoint[0][0], this.tracePoint[0][1]);
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.tracePoint[0][0], this.tracePoint[0][1]);
             for (let i = 0; i < this.tracePoint.length - 1; i++) {
-                ctx.lineTo(this.tracePoint[i + 1][0], this.tracePoint[i + 1][1]);
-                ctx.globalAlpha = (2.6 / (time - this.tracePoint[i][2])) * 0.8;
-                ctx.stroke();
+                this.ctx.lineTo(this.tracePoint[i + 1][0], this.tracePoint[i + 1][1]);
+                this.ctx.globalAlpha = (2.6 / (time - this.tracePoint[i][2])) * 0.8;
+                this.ctx.stroke();
             }
-            ctx.closePath();
+            this.ctx.closePath();
         }
         window.requestAnimationFrame(this.drawTrace.bind(this));
     }
@@ -108,13 +111,17 @@ class osuCursor {
 // osu光标
 var cursor = new osuCursor();
 
-window.addEventListener("resize", cursor.resetCanvasSize);
+window.addEventListener("resize", function () {
+    cursor.resetCanvasSize
+    cursor.setLineStyle();
+});
 window.addEventListener("mouseout", cursor.invisibleCursor);
 window.addEventListener("mousedown", cursor.cursorToBig);
 window.addEventListener("mouseup", cursor.cursorToSmall);
-window.addEventListener("mousemove", function(event){
+window.addEventListener("mousemove", function (event) {
     cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
-    cursor.visibleCursor();
 });
+window.addEventListener("mouseover", cursor.visibleCursor);
 
+cursor.setLineStyle();
 cursor.drawTrace();
