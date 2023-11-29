@@ -15,7 +15,7 @@ class sonyBtnBg {
         this.triangleNum = 5;
         this.xNum = 5;
         this.roundNum = 5;
-        this.num = this.squareNum + this.triangleNum + this.xNum + this.roundNum;
+        this.total = this.squareNum + this.triangleNum + this.xNum + this.roundNum;
 
         // 生成html元素
         this.sonyBtnBg = document.createElement('canvas');
@@ -124,7 +124,7 @@ class sonyBtnBg {
 
     setRandomPA(){
         // 随机位置、角度
-        for (let i = 0; i < this.num; i++) {
+        for (let i = 0; i < this.total; i++) {
             this.position[i] = [getRandomIntInclusive(0, bgCanvas.width),
             getRandomIntInclusive(0, bgCanvas.height)];
             this.angle[i] = getRandomIntInclusive(0, 359);
@@ -134,8 +134,8 @@ class sonyBtnBg {
     resetRandomPA(){
         while (true) {
             let error = false;
-            for (let i = 0; i < this.num; i++) {
-                for (let ii = 0; ii < this.num; ii++) {
+            for (let i = 0; i < this.total; i++) {
+                for (let ii = 0; ii < this.total; ii++) {
                     if (i == ii) {
                         continue;
                     }
@@ -155,7 +155,7 @@ class sonyBtnBg {
 
     drawGraphics(){
         // 绘制图形
-        for (let i = 0; i < this.num; i = i + 4) {
+        for (let i = 0; i < this.total; i = i + 4) {
             this.createBgSquare(this.position[i][0], this.position[i][1], this.angle[i]);
             this.createBgRound(this.position[i + 1][0], this.position[i + 1][1]);
             this.createBgTriangle(this.position[i + 2][0], this.position[i + 2][1], this.angle[i + 2]);
