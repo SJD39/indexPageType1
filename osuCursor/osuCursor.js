@@ -3,6 +3,10 @@ class osuCursor {
         // 初始化变量
         this.tracePoint = [];
         this.traceNum = 20;
+        this.lineColor = '#0000FF';
+        this.lineWidth = 6;
+        this.shadowBlur = 12;
+        this.shadowColor = '#0000FF';
 
         // 生成HTML元素
         this.osuCursorRound = document.createElement('img');
@@ -79,13 +83,14 @@ class osuCursor {
             ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
 
             // 定义线段样式
-            ctx.strokeStyle = "#0000FF";
-            ctx.lineWidth = 6;
+            ctx.strokeStyle = this.lineColor;
+            ctx.lineWidth = this.lineWidth;
             ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = "#0000FF";
+            ctx.shadowBlur = this.shadowBlur;
+            ctx.shadowColor = this.shadowColor;
 
             ctx.beginPath();
             ctx.moveTo(this.tracePoint[0][0], this.tracePoint[0][1]);
