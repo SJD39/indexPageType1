@@ -112,7 +112,7 @@ class osuCursor {
 var cursor = new osuCursor();
 
 window.addEventListener("resize", function () {
-    cursor.resetCanvasSize
+    cursor.resetCanvasSize();
     cursor.setLineStyle();
 });
 window.addEventListener("mouseout", cursor.invisibleCursor);
