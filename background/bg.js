@@ -31,99 +31,88 @@ class sonyBtnBg {
         // 初始屏幕大小
         bgCanvas.width = window.innerWidth;
         bgCanvas.height = window.innerHeight;
+
+        this.ctx = bgCanvas.getContext("2d");
+        this.ctx.lineCap = 'round';
+        this.ctx.lineJoin = 'round';
     }
 
     createBgSquare(x, y, angle) {
-        let ctx = bgCanvas.getContext("2d");
-    
         // 定义线段样式
-        ctx.strokeStyle = "#faafbe";
-        ctx.lineWidth = 8 * this.size;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-    
+        this.ctx.strokeStyle = "#faafbe";
+        this.ctx.lineWidth = 8 * this.size;
+
         // 绘制线段
-        ctx.beginPath();
-        ctx.translate(x, y);
-        ctx.rotate(angle * (Math.PI / 180));
+        this.ctx.beginPath();
+        this.ctx.translate(x, y);
+        this.ctx.rotate(angle * (Math.PI / 180));
     
-        ctx.moveTo(-62 * this.size, -62 * this.size);
-        ctx.lineTo(62 * this.size, -62 * this.size);
-        ctx.lineTo(62 * this.size, 62 * this.size);
-        ctx.lineTo(-62 * this.size, 62 * this.size);
-        ctx.lineTo(-62 * this.size, -62 * this.size);
-        ctx.stroke();
+        this.ctx.moveTo(-62 * this.size, -62 * this.size);
+        this.ctx.lineTo(62 * this.size, -62 * this.size);
+        this.ctx.lineTo(62 * this.size, 62 * this.size);
+        this.ctx.lineTo(-62 * this.size, 62 * this.size);
+        this.ctx.lineTo(-62 * this.size, -62 * this.size);
+        this.ctx.stroke();
     
-        ctx.rotate(-(angle * (Math.PI / 180)));
-        ctx.translate(-x, -y);
-        ctx.closePath();
+        this.ctx.rotate(-(angle * (Math.PI / 180)));
+        this.ctx.translate(-x, -y);
+        this.ctx.closePath();
     }
 
     createBgTriangle(x, y, angle) {
-        let ctx = bgCanvas.getContext("2d");
-    
         // 定义线段样式
-        ctx.strokeStyle = "#66ccff";
-        ctx.lineWidth = 8 * this.size;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
+        this.ctx.strokeStyle = "#66ccff";
+        this.ctx.lineWidth = 8 * this.size;
     
         // 绘制线段
-        ctx.beginPath();
-        ctx.translate(x, y);
-        ctx.rotate(angle * (Math.PI / 180));
+        this.ctx.beginPath();
+        this.ctx.translate(x, y);
+        this.ctx.rotate(angle * (Math.PI / 180));
     
-        ctx.moveTo(-63 * this.size, -63 * this.size);
-        ctx.lineTo(63 * this.size, -63 * this.size);
-        ctx.lineTo(0, 47 * this.size);
-        ctx.lineTo(-63 * this.size, -63 * this.size);
-        ctx.stroke();
+        this.ctx.moveTo(-63 * this.size, -63 * this.size);
+        this.ctx.lineTo(63 * this.size, -63 * this.size);
+        this.ctx.lineTo(0, 47 * this.size);
+        this.ctx.lineTo(-63 * this.size, -63 * this.size);
+        this.ctx.stroke();
     
-        ctx.rotate(-(angle * (Math.PI / 180)));
-        ctx.translate(-x, -y);
-        ctx.closePath();
+        this.ctx.rotate(-(angle * (Math.PI / 180)));
+        this.ctx.translate(-x, -y);
+        this.ctx.closePath();
     }
 
     createBgX(x, y, angle) {
-        let ctx = bgCanvas.getContext("2d");
-    
         // 定义线段样式
-        ctx.strokeStyle = "#5C88DA";
-        ctx.lineWidth = 8 * this.size;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
+        this.ctx.strokeStyle = "#5C88DA";
+        this.ctx.lineWidth = 8 * this.size;
     
         // 绘制线段
-        ctx.beginPath();
-        ctx.translate(x, y);
-        ctx.rotate(angle * (Math.PI / 180));
+        this.ctx.beginPath();
+        this.ctx.translate(x, y);
+        this.ctx.rotate(angle * (Math.PI / 180));
     
-        ctx.moveTo(-55 * this.size, -55 * this.size);
-        ctx.lineTo(55 * this.size, 55 * this.size);
-        ctx.moveTo(55 * this.size, -55 * this.size);
-        ctx.lineTo(-55 * this.size, 55 * this.size);
-        ctx.stroke();
+        this.ctx.moveTo(-55 * this.size, -55 * this.size);
+        this.ctx.lineTo(55 * this.size, 55 * this.size);
+        this.ctx.moveTo(55 * this.size, -55 * this.size);
+        this.ctx.lineTo(-55 * this.size, 55 * this.size);
+        this.ctx.stroke();
     
-        ctx.rotate(-(angle * (Math.PI / 180)));
-        ctx.translate(-x, -y);
-        ctx.closePath();
+        this.ctx.rotate(-(angle * (Math.PI / 180)));
+        this.ctx.translate(-x, -y);
+        this.ctx.closePath();
     }
 
     createBgRound(x, y) {
-        let ctx = bgCanvas.getContext("2d");
-    
         // 定义线段样式
-        ctx.strokeStyle = "#00ffcc";
-        ctx.lineWidth = 8 * this.size;
-        ctx.lineCap = 'round';
+        this.ctx.strokeStyle = "#00ffcc";
+        this.ctx.lineWidth = 8 * this.size;
     
         // 绘制线段
-        ctx.beginPath();
+        this.ctx.beginPath();
     
-        ctx.arc(x, y, 65 * this.size, 0, 360, false);
+        this.ctx.arc(x, y, 65 * this.size, 0, 360, false);
     
-        ctx.stroke();
-        ctx.closePath();
+        this.ctx.stroke();
+        this.ctx.closePath();
     }
 
     setRandomPA(){
