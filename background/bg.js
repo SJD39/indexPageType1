@@ -1,7 +1,11 @@
 class sonyBtnBg {
     constructor() {
         // 缩放系数
-        this.size = window.innerWidth / 1501;
+        if(window.innerWidth > window.innerHeight){
+            this.size = window.innerWidth / 1501;
+        }else{
+            this.size = window.innerHeight / 1501;
+        }
 
         // 最小间距
         this.spacing = 180 * this.size;
