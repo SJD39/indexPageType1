@@ -32,15 +32,15 @@ class osuCursor {
 
         // 获取Canvas上下文
         this.ctx = this.osuCursorCanvas.getContext("2d");
+        this.ctx.lineCap = 'round';
+        this.ctx.lineJoin = 'round';
+        this.ctx.shadowOffsetX = 0;
+        this.ctx.shadowOffsetY = 0;
     }
 
     setLineStyle() {
         this.ctx.strokeStyle = this.lineColor;
         this.ctx.lineWidth = this.lineWidth;
-        this.ctx.lineCap = 'round';
-        this.ctx.lineJoin = 'round';
-        this.ctx.shadowOffsetX = 0;
-        this.ctx.shadowOffsetY = 0;
         this.ctx.shadowBlur = this.shadowBlur;
         this.ctx.shadowColor = this.shadowColor;
     }
