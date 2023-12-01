@@ -13,10 +13,10 @@
 </head>
 
 <body>
-    <div class="contentP top">
-        <div class="topContent">
+    <div id="firstPage" class="page">
+        <div id="firstContent">
             <h1>引 导 页</h1>
-                
+
             <p>Can you see me?</p>
             <ul>
                 <li data-type="external" data-href="https://www.baidu.com">
@@ -25,8 +25,8 @@
                 <li>
                     <span>无</span>
                 </li>
-                <li>
-                    <span>无</span>
+                <li data-type="this" data-id="reaction">
+                    <span>反应速度测试</span>
                 </li>
                 <li data-type="this" data-id="contentP1">
                     <span>绿</span>
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="contentBox">
+    <!-- <div class="otherContent">
         <div class="contentP P1" id="contentP1">
 
         </div>
@@ -53,7 +53,11 @@
         <div class="contentP P3" id="contentP3">
 
         </div>
-    </div>
+
+        <div class="contentP reaction" id="reaction">
+            <iframe src="https://reaction.cysm.icu/" frameborder="0"></iframe>
+        </div>
+    </div> -->
 
 </body>
 
@@ -67,4 +71,5 @@
 <!-- osu光标 -->
 <script src="./osuCursor/osuCursor.js"></script>
 <link rel="stylesheet" href="./osuCursor/osuCursor.css">
+
 </html>

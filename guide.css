@@ -29,11 +29,20 @@ html,
 body {
     width: 100%;
     height: 100%;
-
-    position: relative;
 }
 
-.topContent {
+.page{
+    width: 100%;
+    height: 100%;
+}
+
+#firstPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#firstContent {
     opacity: 0;
     position: relative;
 
@@ -49,7 +58,7 @@ body {
     padding-right: 60px;
 }
 
-.topContent ul {
+#firstContent ul {
     width: 100%;
     height: 200px;
 
@@ -62,7 +71,7 @@ body {
     padding-top: 10px;
 }
 
-.topContent li {
+#firstContent li {
     opacity: 0;
     position: relative;
 
@@ -77,18 +86,18 @@ body {
     padding-top: 20px;
 }
 
-.topContent li:hover {
+#firstContent li:hover {
     padding-bottom: 15px;
     padding-top: 15px;
     color: #39c5bb;
 }
 
-.topContent li:hover::after {
+#firstContent li:hover::after {
     transform: scaleX(1);
     background-color: #39c5bb;
 }
 
-.topContent li::after {
+#firstContent li::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -100,7 +109,7 @@ body {
     background-color: rgba(255, 255, 255, 0.6);
 }
 
-.topContent p {
+#firstContent p {
     padding-top: 20px;
     padding-bottom: 10px;
     color: #000;
@@ -108,12 +117,12 @@ body {
     margin-bottom: 30px;
 }
 
-.topContent h1 {
+#firstContent h1 {
     color: #000;
     font-size: 54px;
 }
 
-.topContent li span {
+#firstContent li span {
     pointer-events: none;
 }
 
@@ -131,11 +140,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.P1,
-.P2,
-.P3 {
     position: fixed;
 }
 
