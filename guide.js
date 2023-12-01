@@ -1,6 +1,3 @@
-var loading = document.getElementsByClassName('loading')[0];
-var html = document.getElementsByTagName('html')[0];
-var body = document.getElementsByClassName('body')[0];
 var topContentLis = firstContent.getElementsByTagName('li');
 
 window.onload = function () {
@@ -31,33 +28,54 @@ window.onload = function () {
 }
 
 // 页面滚动
-addEventListener('wheel', (event) => {
-    let speed = 800;
+// addEventListener('wheel', (event) => {
+//     let speed = 800;
 
-    if (wheelLock == true) {
-        return;
-    }
-    if (event.deltaY > 0) {
-        pageDown(speed);
-    } else if (event.deltaY < 0) {
-        pageUp(speed)
-    }
-});
+//     if (wheelLock == true) {
+//         return;
+//     }
+//     if (event.deltaY > 0) {
+//         pageDown(speed);
+//     } else if (event.deltaY < 0) {
+//         pageUp(speed)
+//     }
+// });
+
+// 首页上翻
+function firstPageUp(){
+    let firstPageUpFrames = new KeyframeEffect(
+        firstPage,
+        [
+            {top: '0%'},
+            {top: '-100%'}
+        ],
+        { duration: 800, fill: 'forwards', easing: 'ease' }
+    )
+
+    let firstPageAnimation = new Animation(firstPageUpFrames, document.timeline);
+    firstPageAnimation.play();
+}
 
 window.onclick = function(e){
     switch (e.target.dataset.type) {
         case 'external':
+            // 外部链接
             if(e.target.dataset.href == undefined){
                 return;
             }
+
             window.open(e.target.dataset.href)
             break;
         case 'this':
+            // 内部嵌套
             let dom = eval(e.target.dataset.id);
             if(dom == undefined){
                 return;
             }
-            dom.style.top = '100%';
+
+            dom.style.top = '0%';
+            dom.style.zIndex = '1';
+            firstPageUp();
             break;
     }    
 }

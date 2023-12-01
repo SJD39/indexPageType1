@@ -13,7 +13,6 @@ a:visited,
 a:link {
     text-decoration: none;
     outline: none;
-    color: #ddd;
 }
 
 li {
@@ -34,6 +33,7 @@ body {
 .page{
     width: 100%;
     height: 100%;
+    position: fixed;
 }
 
 #firstPage{
@@ -92,11 +92,6 @@ body {
     color: #39c5bb;
 }
 
-#firstContent li:hover::after {
-    transform: scaleX(1);
-    background-color: #39c5bb;
-}
-
 #firstContent li::after {
     content: '';
     position: absolute;
@@ -107,6 +102,11 @@ body {
     transform: scaleX(0);
     transition: 0.3s;
     background-color: rgba(255, 255, 255, 0.6);
+}
+
+#firstContent li:hover::after {
+    transform: scaleX(1);
+    background-color: #39c5bb;
 }
 
 #firstContent p {
@@ -122,36 +122,12 @@ body {
     font-size: 54px;
 }
 
-#firstContent li span {
-    pointer-events: none;
-}
-
-.contentBox {
+.otherPage iframe{
     width: 100%;
     height: 100%;
-    position: fixed;
-    z-index: 2;
 }
 
-.contentP {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: fixed;
-}
-
-.P1 {
-    background-color: #39c5bb;
-}
-
-.P2 {
-    background-color: #ff68f2;
-}
-
-.P3 {
-    background-color: #d41111;
+.otherPage{
+    top: -100%;
+    z-index: -1000;
 }

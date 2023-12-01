@@ -115,13 +115,21 @@ window.addEventListener("resize", function () {
     cursor.resetCanvasSize();
     cursor.setLineStyle();
 });
-window.addEventListener("mouseout", cursor.invisibleCursor);
 window.addEventListener("mousedown", cursor.cursorToBig);
 window.addEventListener("mouseup", cursor.cursorToSmall);
 window.addEventListener("mousemove", function (event) {
     cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
 });
-window.addEventListener("mouseover", cursor.visibleCursor);
+window.addEventListener("mouseover", function(e){
+    if(e.target.localName == 'iframe'){
+        cursor.invisibleCursor();
+    }else{
+        cursor.visibleCursor();
+    }
+});
 
+window.addEventListener("mouseout", function(e){
+    cursor.invisibleCursor();
+});
 cursor.setLineStyle();
 cursor.drawTrace();
