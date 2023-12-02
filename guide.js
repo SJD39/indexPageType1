@@ -1,10 +1,10 @@
-var loading = document.getElementsByClassName('loading')[0];
 var html = document.getElementsByTagName('html')[0];
 var body = document.getElementsByClassName('body')[0];
 var topContent = document.getElementsByClassName('topContent')[0];
 var topContentLis = topContent.getElementsByTagName('li');
 
 window.onload = function () {
+    loading.style.display = 'none';
     // 标题出现动画
     topContent.style.animation = 'appearTitle .8s';
     topContent.style.animationFillMode = 'forwards';
