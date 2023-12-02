@@ -1,6 +1,9 @@
-#sonyBtnBg{
+body{
     background-color: aquamarine;
-    position: absolute;
+}
+
+#sonyBtnBg{
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1;

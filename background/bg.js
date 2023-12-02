@@ -22,9 +22,8 @@ class sonyBtnBg {
         this.sonyBtnBg = document.createElement('canvas');
         this.sonyBtnBg.id = 'sonyBtnBg';
 
-        // this.body = document.getElementsByTagName('body')[0];
-        // this.body.append(this.sonyBtnBg);
-        firstPage.append(this.sonyBtnBg);
+        this.body = document.getElementsByTagName('body')[0];
+        this.body.append(this.sonyBtnBg);
 
         // 初始屏幕大小
         this.sonyBtnBg.width = window.innerWidth;
