@@ -46,19 +46,8 @@ addEventListener('wheel', (event) => {
 });
 
 window.onclick = function(e){
-    switch (e.target.dataset.type) {
-        case 'external':
-            if(e.target.dataset.href == undefined){
-                return;
-            }
-            window.open(e.target.dataset.href)
-            break;
-        case 'this':
-            let dom = eval(e.target.dataset.id);
-            if(dom == undefined){
-                return;
-            }
-            dom.style.top = '100%';
-            break;
-    }    
+    if(e.target.dataset.href == undefined){
+        return;
+    }
+    window.open(e.target.dataset.href)
 }
