@@ -1,6 +1,7 @@
 class osuCursor {
     constructor() {
         // 初始化变量
+        this.saveMode = false;
         this.tracePoint = [];
         this.traceNum = 20;
         this.lineColor = '#0000FF';
@@ -87,24 +88,42 @@ class osuCursor {
 
     // 绘制轨迹
     drawTrace() {
-        // 刷新光标位置
-        if (this.tracePoint.length != 0) {
-            this.setCursorPoint(this.tracePoint[0][0], this.tracePoint[0][1]);
-
-            let time = new Date().getTime();
-
-            this.ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
-
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.tracePoint[0][0], this.tracePoint[0][1]);
-            for (let i = 0; i < this.tracePoint.length - 1; i++) {
-                this.ctx.lineTo(this.tracePoint[i + 1][0], this.tracePoint[i + 1][1]);
-                this.ctx.globalAlpha = (2.6 / (time - this.tracePoint[i][2])) * 0.8;
-                this.ctx.stroke();
-            }
-            this.ctx.closePath();
+        if (this.tracePoint.length == 0) {
+            window.requestAnimationFrame(this.drawTrace.bind(this));
+            return
         }
+        // 刷新光标位置
+        this.setCursorPoint(this.tracePoint[0][0], this.tracePoint[0][1]);
+
+        // 绘制轨迹
+        if (this.saveMode == true) {
+            window.requestAnimationFrame(this.drawTrace.bind(this));
+            return
+        }
+        
+        let time = new Date().getTime();
+
+        this.ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.tracePoint[0][0], this.tracePoint[0][1]);
+        for (let i = 0; i < this.tracePoint.length - 1; i++) {
+            this.ctx.lineTo(this.tracePoint[i + 1][0], this.tracePoint[i + 1][1]);
+            this.ctx.globalAlpha = (2.6 / (time - this.tracePoint[i][2])) * 0.8;
+            this.ctx.stroke();
+        }
+        this.ctx.closePath();
         window.requestAnimationFrame(this.drawTrace.bind(this));
+    }
+
+    // 开启节能模式
+    saveModeOpen() {
+        this.saveMode = true;
+    }
+
+    // 关闭节能模式
+    saveModeClose(){
+        this.saveMode = false;
     }
 }
 
