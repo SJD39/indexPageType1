@@ -45,9 +45,29 @@ addEventListener('wheel', (event) => {
     }
 });
 
-window.onclick = function(e){
-    if(e.target.dataset.href == undefined){
+window.onclick = function (e) {
+    if (e.target.dataset.url == undefined) {
         return;
     }
-    window.open(e.target.dataset.href)
+    window.open(e.target.dataset.url)
+}
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", "http://127.0.0.1:3900/guide", true);
+xmlhttp.send();
+
+xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        let json = JSON.parse(xmlhttp.responseText);
+        console.log(json);
+        let li = []
+        for (let i = 0; i < json.length; i++) {
+            li[i] = document.createElement('li');
+            li[i].dataset.type = json[i].Type;
+            li[i].dataset.url = json[i].Url;
+            li[i].innerHTML = '<span>' + (json[i].Name ? json[i].Name : '无') + '</span>';
+            guideUl.append(li[i]);
+        }
+
+    }
 }

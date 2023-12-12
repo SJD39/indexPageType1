@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -14,18 +13,18 @@ type GuideData struct {
 }
 
 func guide(w http.ResponseWriter, r *http.Request) {
-	// 引导页
-	fmt.Printf(r.URL.Query().Get("id"))
+	var guideData [6]GuideData
+	guideData[0].Type = "external"
+	guideData[0].Name = "baidu"
+	guideData[0].Url = "https://baidu.com"
 
-	var guideData GuideData
-	guideData.Type = "external"
-	guideData.Name = "baidu"
-	guideData.Url = "https://baidu.com"
 	backJson, err := json.Marshal(guideData)
 	if err != nil {
 		log.Fatalf("Error:", err)
 	}
+
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Write(backJson)
 }
 
