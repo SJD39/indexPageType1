@@ -1,6 +1,5 @@
 var html = document.getElementsByTagName('html')[0];
 var body = document.getElementsByClassName('body')[0];
-var topContent = document.getElementsByClassName('topContent')[0];
 var topContentLis = topContent.getElementsByTagName('li');
 
 window.onload = function () {
@@ -32,24 +31,28 @@ window.onload = function () {
 }
 
 // 页面滚动
-addEventListener('wheel', (event) => {
-    let speed = 800;
+// addEventListener('wheel', (event) => {
+//     let speed = 800;
 
-    if (wheelLock == true) {
-        return;
-    }
-    if (event.deltaY > 0) {
-        pageDown(speed);
-    } else if (event.deltaY < 0) {
-        pageUp(speed)
-    }
-});
+//     if (wheelLock == true) {
+//         return;
+//     }
+//     if (event.deltaY > 0) {
+//         pageDown(speed);
+//     } else if (event.deltaY < 0) {
+//         pageUp(speed)
+//     }
+// });
 
 window.onclick = function (e) {
-    if (e.target.dataset.url == undefined) {
-        return;
+    if(e.target.dataset.Type == 'external'){
+        if (e.target.dataset.url == undefined) {
+            return;
+        }
+        window.open(e.target.dataset.url)
+    }else if(e.target.dataset.Type == 'here'){
+
     }
-    window.open(e.target.dataset.url)
 }
 
 var xmlhttp = new XMLHttpRequest();
@@ -62,12 +65,17 @@ xmlhttp.onreadystatechange = function () {
         console.log(json);
         let li = []
         for (let i = 0; i < json.length; i++) {
+            // 生成首页元素
             li[i] = document.createElement('li');
             li[i].dataset.type = json[i].Type;
             li[i].dataset.url = json[i].Url;
             li[i].innerHTML = '<span>' + (json[i].Name ? json[i].Name : '无') + '</span>';
             guideUl.append(li[i]);
-        }
 
+            // 生成内容页面
+            if(li[i].dataset.type == 'here'){
+                contentPage = document.createElement('div');
+            }
+        }
     }
 }

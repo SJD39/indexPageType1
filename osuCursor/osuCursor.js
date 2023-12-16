@@ -1,7 +1,7 @@
 class osuCursor {
     constructor() {
         // 初始化变量
-        this.saveMode = false;
+        this.closeTrace = false;
         this.tracePoint = [];
         this.traceNum = 20;
         this.lineColor = '#0000FF';
@@ -54,11 +54,14 @@ class osuCursor {
 
     // 使指针不可见
     invisibleCursor() {
+        this.tracePoint = [];
+        this.closeTrace = true;
         this.osuCursorBox.style.display = "none";
     }
 
     // 使指针可见
     visibleCursor() {
+        this.closeTrace = false;
         this.osuCursorBox.style.display = "flex";
     }
 
@@ -96,7 +99,7 @@ class osuCursor {
         this.setCursorPoint(this.tracePoint[0][0], this.tracePoint[0][1]);
 
         // 绘制轨迹
-        if (this.saveMode == true) {
+        if (this.closeTrace == true) {
             window.requestAnimationFrame(this.drawTrace.bind(this));
             return
         }
@@ -118,12 +121,13 @@ class osuCursor {
 
     // 开启节能模式
     saveModeOpen() {
-        this.saveMode = true;
+        this.tracePoint = [];
+        this.closeTrace = true;
     }
 
     // 关闭节能模式
     saveModeClose(){
-        this.saveMode = false;
+        this.closeTrace = false;
     }
 }
 
@@ -140,7 +144,9 @@ window.addEventListener("mouseup", cursor.cursorToSmall);
 window.addEventListener("mousemove", function (event) {
     cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
 });
-window.addEventListener("mouseover", cursor.visibleCursor);
+topPage.addEventListener("mouseover", cursor.visibleCursor);
+
+topPage.addEventListener("mouseout", cursor.invisibleCursor);
 
 cursor.setLineStyle();
 cursor.drawTrace();

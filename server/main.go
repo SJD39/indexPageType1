@@ -18,6 +18,10 @@ func guide(w http.ResponseWriter, r *http.Request) {
 	guideData[0].Name = "baidu"
 	guideData[0].Url = "https://baidu.com"
 
+	guideData[1].Type = "here"
+	guideData[1].Name = "反应速度测试"
+	guideData[1].Url = "https://reaction.cysm.icu/"
+
 	backJson, err := json.Marshal(guideData)
 	if err != nil {
 		log.Fatalf("Error:", err)
