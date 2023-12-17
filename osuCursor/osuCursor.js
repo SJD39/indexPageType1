@@ -37,6 +37,8 @@ class osuCursor {
         this.ctx.lineJoin = 'round';
         this.ctx.shadowOffsetX = 0;
         this.ctx.shadowOffsetY = 0;
+
+        
     }
 
     setLineStyle() {
@@ -54,6 +56,8 @@ class osuCursor {
 
     // 使指针不可见
     invisibleCursor() {
+        this.ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
+
         this.tracePoint = [];
         this.closeTrace = true;
         this.osuCursorBox.style.display = "none";
@@ -83,7 +87,7 @@ class osuCursor {
 
     // 设置绘制点位
     setPoint(x, y, t) {
-        if(closeTrace){
+        if(this.closeTrace){
             return;
         }
 
@@ -143,13 +147,25 @@ window.addEventListener("resize", function () {
     cursor.setLineStyle();
 });
 
-topPage.addEventListener("mousedown", cursor.cursorToBig);
-topPage.addEventListener("mouseup", cursor.cursorToSmall);
+topPage.addEventListener("mousedown", function(){
+    cursor.cursorToBig();
+});
+
+topPage.addEventListener("mouseup", function(){
+    cursor.cursorToSmall();
+});
+
 topPage.addEventListener("mousemove", function (event) {
     cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
 });
-topPage.addEventListener("mouseover", cursor.visibleCursor);
-topPage.addEventListener("mouseout", cursor.invisibleCursor);
+
+topPage.addEventListener("mouseover", function(){
+    cursor.visibleCursor();
+});
+
+topPage.addEventListener("mouseout", function(){
+    cursor.invisibleCursor();
+});
 
 cursor.setLineStyle();
 cursor.drawTrace();
