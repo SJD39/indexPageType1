@@ -83,6 +83,10 @@ class osuCursor {
 
     // 设置绘制点位
     setPoint(x, y, t) {
+        if(closeTrace){
+            return;
+        }
+
         this.tracePoint.unshift([x, y, t]);
         if (this.tracePoint.length > this.traceNum) {
             this.tracePoint.length = this.traceNum;
@@ -138,14 +142,13 @@ window.addEventListener("resize", function () {
     cursor.resetCanvasSize();
     cursor.setLineStyle();
 });
-window.addEventListener("mouseout", cursor.invisibleCursor);
-window.addEventListener("mousedown", cursor.cursorToBig);
-window.addEventListener("mouseup", cursor.cursorToSmall);
-window.addEventListener("mousemove", function (event) {
+
+topPage.addEventListener("mousedown", cursor.cursorToBig);
+topPage.addEventListener("mouseup", cursor.cursorToSmall);
+topPage.addEventListener("mousemove", function (event) {
     cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
 });
 topPage.addEventListener("mouseover", cursor.visibleCursor);
-
 topPage.addEventListener("mouseout", cursor.invisibleCursor);
 
 cursor.setLineStyle();
