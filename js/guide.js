@@ -45,24 +45,19 @@ window.onload = function () {
 // });
 
 window.onclick = function (e) {
-    if(e.target.dataset.Type == 'external'){
+    if (e.target.dataset.Type == 'external') {
         if (e.target.dataset.url == undefined) {
             return;
         }
         window.open(e.target.dataset.url)
-    }else if(e.target.dataset.Type == 'here'){
+    } else if (e.target.dataset.Type == 'here') {
 
     }
 }
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.open("GET", "http://127.0.0.1:3900/guide", true);
-xmlhttp.send();
-
-xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        let json = JSON.parse(xmlhttp.responseText);
-        console.log(json);
+fetch('http://127.0.0.1:3900/guide')
+    .then(response => response.json())
+    .then(function(json){
         let li = []
         for (let i = 0; i < json.length; i++) {
             // 生成首页元素
@@ -77,5 +72,5 @@ xmlhttp.onreadystatechange = function () {
                 contentPage = document.createElement('div');
             }
         }
-    }
-}
+    })
+    .catch(err => console.log('Request Failed', err)); 
