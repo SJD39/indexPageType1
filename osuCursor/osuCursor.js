@@ -163,7 +163,8 @@ topPage.addEventListener("mouseover", function(){
     cursor.visibleCursor();
 });
 
-topPage.addEventListener("mouseout", function(){
+topPage.addEventListener("mouseout", function(event){
+    console.log(event);
     cursor.invisibleCursor();
 });
 
