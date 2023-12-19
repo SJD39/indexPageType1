@@ -38,7 +38,7 @@ class osuCursor {
         this.ctx.shadowOffsetX = 0;
         this.ctx.shadowOffsetY = 0;
 
-        
+
     }
 
     setLineStyle() {
@@ -87,7 +87,7 @@ class osuCursor {
 
     // 设置绘制点位
     setPoint(x, y, t) {
-        if(this.closeTrace){
+        if (this.closeTrace) {
             return;
         }
 
@@ -111,7 +111,7 @@ class osuCursor {
             window.requestAnimationFrame(this.drawTrace.bind(this));
             return
         }
-        
+
         let time = new Date().getTime();
 
         this.ctx.clearRect(0, 0, osuCursorCanvas.width, osuCursorCanvas.height);
@@ -134,7 +134,7 @@ class osuCursor {
     }
 
     // 关闭节能模式
-    saveModeClose(){
+    saveModeClose() {
         this.closeTrace = false;
     }
 }
@@ -147,11 +147,11 @@ window.addEventListener("resize", function () {
     cursor.setLineStyle();
 });
 
-topPage.addEventListener("mousedown", function(){
+topPage.addEventListener("mousedown", function () {
     cursor.cursorToBig();
 });
 
-topPage.addEventListener("mouseup", function(){
+topPage.addEventListener("mouseup", function () {
     cursor.cursorToSmall();
 });
 
@@ -159,12 +159,19 @@ topPage.addEventListener("mousemove", function (event) {
     cursor.setPoint(event.clientX, event.clientY, new Date().getTime());
 });
 
-topPage.addEventListener("mouseover", function(){
+topPage.addEventListener("mouseover", function (event) {
+    if (event.fromElement != null && event.fromElement.localName != 'iframe') {
+        return;
+    }
+    
     cursor.visibleCursor();
 });
 
-topPage.addEventListener("mouseout", function(event){
-    console.log(event);
+topPage.addEventListener("mouseout", function (event) {
+    if (event.toElement != null && event.toElement.localName != 'iframe') {
+        return;
+    }
+
     cursor.invisibleCursor();
 });
 
