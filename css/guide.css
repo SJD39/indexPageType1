@@ -51,7 +51,30 @@ body {
     align-items: center;
 }
 
+.contentPage {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    z-index: -5;
+}
+
+.contentPage iframe{
+    width: 100%;
+    height: 100%;
+}
+
+#topPage{
+    z-index: 5;
+}
+
 #topContent {
+    cursor: none;
+
     opacity: 0;
     position: relative;
 
@@ -142,15 +165,4 @@ body {
     height: 100%;
     position: fixed;
     z-index: 2;
-}
-
-.contentPage {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: fixed;
 }

@@ -29,10 +29,6 @@
     }
 }
 
-*{
-    cursor: none;
-}
-
 #osuCursorCanvas{
     position: fixed;
     top: 0;
