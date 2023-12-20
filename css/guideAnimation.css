@@ -1,4 +1,3 @@
-
 /* 标题出现动画 */
 @keyframes appearTitle {
     from {
@@ -35,3 +34,10 @@
         top: 0px;
     }
 }
+
+/*  */
+/* @keyframes identifier {
+    from {}
+
+    to {}
+} */
