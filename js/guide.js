@@ -1,5 +1,5 @@
 var html = document.getElementsByTagName('html')[0];
-var body = document.getElementsByClassName('body')[0];
+var body = document.getElementsByTagName('body')[0];
 var topContentLis = topContent.getElementsByTagName('li');
 
 window.onload = function () {
@@ -57,20 +57,29 @@ window.onclick = function (e) {
 
 fetch('http://127.0.0.1:3900/guide')
     .then(response => response.json())
-    .then(function(json){
-        let li = []
-        for (let i = 0; i < json.length; i++) {
-            // 生成首页元素
-            li[i] = document.createElement('li');
-            li[i].dataset.type = json[i].Type;
-            li[i].dataset.url = json[i].Url;
-            li[i].innerHTML = '<span>' + (json[i].Name ? json[i].Name : '无') + '</span>';
-            guideUl.append(li[i]);
-
-            // 生成内容页面
-            if(li[i].dataset.type == 'here'){
-                contentPage = document.createElement('div');
-            }
-        }
-    })
+    .then(json => createPage(json))
     .catch(err => console.log('Request Failed', err)); 
+
+function createPage(json){
+    let li = [];
+    for (let i = 0; i < json.length; i++) {
+        // 生成首页元素
+        li[i] = document.createElement('li');
+        li[i].dataset.type = json[i].Type;
+        li[i].dataset.url = json[i].Url;
+        li[i].innerHTML = '<span>' + (json[i].Name ? json[i].Name : '无') + '</span>';
+        guideUl.append(li[i]);
+
+        // 生成内容页面
+        if (li[i].dataset.type == 'here') {
+            let iframe = document.createElement('iframe');
+            iframe.src = json[i].Url;
+
+            let contentPage = document.createElement('div');
+            contentPage.className = 'contentPage';
+            contentPage.append(iframe);
+
+            body.append(contentPage);
+        }
+    }
+}

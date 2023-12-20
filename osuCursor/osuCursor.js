@@ -37,8 +37,6 @@ class osuCursor {
         this.ctx.lineJoin = 'round';
         this.ctx.shadowOffsetX = 0;
         this.ctx.shadowOffsetY = 0;
-
-
     }
 
     setLineStyle() {
